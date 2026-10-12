@@ -1,0 +1,758 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#071a2b">
+<title>Байкал — жемчужина Сибири</title>
+
+<style>
+:root {
+    --bg: #071a2b;
+    --panel: #10283b;
+    --blue: #59d9ff;
+    --text: #f3f9ff;
+    --muted: #b2c6d8;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+}
+a { color: inherit; text-decoration: none; }
+button { font: inherit; }
+header {
+    position: absolute;
+    z-index: 5;
+    top: 0; left: 0; width: 100%;
+    padding: 24px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+.logo { font-size: 25px; font-weight: 900; letter-spacing: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: 22px; }
+nav a { font-size: 14px; color: #e3f4ff; }
+nav a:hover { color: var(--blue); }
+
+.hero {
+    min-height: 95vh;
+    display: flex;
+    align-items: center;
+    padding: 140px 10% 100px;
+    background:
+        linear-gradient(90deg, #061625e8, #06162544),
+        linear-gradient(0deg, var(--bg), transparent 35%),
+        url("https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=2000&q=85")
+        center/cover;
+}
+.hero-content { max-width: 760px; }
+.eyebrow, .label {
+    color: var(--blue);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 12px;
+    font-weight: bold;
+}
+h1 {
+    font-size: clamp(48px, 9vw, 100px);
+    line-height: 1.03;
+    margin: 18px 0 24px;
+}
+h1 span { color: var(--blue); }
+.hero p { max-width: 580px; color: #e0edf8; font-size: 18px; }
+.btn {
+    display: inline-block;
+    background: var(--blue);
+    color: #061a2b;
+    padding: 13px 24px;
+    border: 0;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: .25s;
+}
+.btn:hover { transform: translateY(-3px); background: #a6edff; }
+.hero .btn { margin-top: 28px; }
+
+section { padding: 85px 9%; }
+h2 { font-size: clamp(30px, 5vw, 48px); line-height: 1.2; margin: 12px 0 20px; }
+.intro { max-width: 760px; color: var(--muted); font-size: 17px; }
+.facts {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+}
+.fact {
+    padding: 24px;
+    border: 1px solid #24475d;
+    border-radius: 17px;
+    background: #ffffff06;
+}
+.fact strong { display: block; color: var(--blue); font-size: 30px; }
+.fact p { color: var(--muted); font-size: 14px; margin-top: 7px; }
+
+.dark-section { background: #0b2235; }
+.split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 45px;
+}
+.split img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 22px;
+}
+.split p { color: var(--muted); margin: 15px 0; }
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 17px;
+    margin-top: 32px;
+}
+.photo {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    height: 250px;
+    background: var(--panel);
+    cursor: pointer;
+}
+.photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .5s;
+}
+.photo:hover img { transform: scale(1.07); }
+.photo::after {
+    content: "";
+    position: absolute;
+    inset: 30% 0 0;
+    background: linear-gradient(transparent, #03111de8);
+    pointer-events: none;
+}
+.photo-caption {
+    position: absolute;
+    z-index: 1;
+    bottom: 15px;
+    left: 17px;
+    right: 12px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.photo-caption small {
+    display: block;
+    font-size: 12px;
+    font-weight: normal;
+    color: #d2e8f5;
+}
+.hint { color: var(--muted); font-size: 13px; margin-top: 15px; }
+
+.quote {
+    text-align: center;
+    background:
+        linear-gradient(#041321bd, #041321e8),
+        url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1800&q=85")
+        center/cover fixed;
+}
+.quote blockquote {
+    max-width: 850px;
+    margin: auto;
+    font-size: clamp(25px, 4vw, 42px);
+    font-weight: bold;
+}
+.quote p { margin-top: 16px; color: var(--blue); }
+
+.quiz-wrap { max-width: 780px; margin: 32px auto 0; }
+.quiz-card {
+    background: var(--panel);
+    border: 1px solid #24485f;
+    border-radius: 22px;
+    padding: clamp(20px, 5vw, 36px);
+}
+.quiz-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    color: var(--muted);
+    font-size: 14px;
+}
+.progress {
+    height: 7px;
+    background: #294357;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 17px 0 26px;
+}
+.progress-bar {
+    height: 100%;
+    width: 0;
+    background: var(--blue);
+    transition: width .3s;
+}
+#question { font-size: clamp(22px, 4vw, 30px); margin-bottom: 22px; }
+.answers { display: grid; gap: 11px; }
+.answer {
+    text-align: left;
+    width: 100%;
+    padding: 14px 17px;
+    border: 1px solid #36536a;
+    border-radius: 12px;
+    background: #ffffff04;
+    color: var(--text);
+    cursor: pointer;
+    transition: .2s;
+}
+.answer:hover:not(:disabled) { border-color: var(--blue); background: #59d9ff12; }
+.answer:disabled { cursor: default; opacity: 1; }
+.answer.correct { border-color: #55dfa5; background: #1b765033; }
+.answer.wrong { border-color: #ff928d; background: #9c343333; }
+#feedback { min-height: 60px; padding: 16px 0 8px; color: var(--muted); }
+.quiz-actions { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+#next-btn:disabled { opacity: .35; cursor: not-allowed; transform: none; }
+.result-screen { text-align: center; padding: 15px 0; }
+.result-emoji { font-size: 65px; }
+.result-score { font-size: 52px; color: var(--blue); font-weight: bold; }
+.result-screen p { color: var(--muted); margin: 8px 0 24px; }
+.hidden { display: none !important; }
+
+footer {
+    text-align: center;
+    border-top: 1px solid #254157;
+    padding: 30px 7%;
+    color: var(--muted);
+    font-size: 13px;
+}
+footer span { color: var(--blue); }
+
+/* Окно увеличенного фото */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    background: #020913f2;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+}
+.lightbox.open { display: flex; }
+.lightbox img {
+    max-width: 95%;
+    max-height: 82vh;
+    object-fit: contain;
+    border-radius: 12px;
+}
+.close-lightbox {
+    position: absolute;
+    top: 18px;
+    right: 25px;
+    border: 0;
+    background: none;
+    color: white;
+    font-size: 38px;
+    cursor: pointer;
+}
+
+@media(max-width: 850px) {
+    .facts { grid-template-columns: repeat(2, 1fr); }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .split { grid-template-columns: 1fr; }
+    .split img { height: 320px; }
+}
+@media(max-width: 560px) {
+    header { padding: 18px 5%; align-items: flex-start; }
+    .logo { font-size: 20px; }
+    nav { gap: 8px 12px; justify-content: flex-end; }
+    nav a { font-size: 12px; }
+    .hero { min-height: 85vh; padding: 125px 7% 80px; }
+    section { padding: 65px 6%; }
+    .facts, .gallery-grid { grid-template-columns: 1fr; }
+    .photo { height: 260px; }
+    .quiz-actions { align-items: stretch; }
+    .quiz-actions .btn { padding: 12px 15px; }
+    .quote { background-attachment: scroll; }
+}
+</style>
+</head>
+
+<body>
+<header>
+    <a href="#home" class="logo">БАЙКАЛ.</a>
+    <nav>
+        <a href="#about">Озеро</a>
+        <a href="#nature">Природа</a>
+        <a href="#gallery">Фотографии</a>
+        <a href="#game">Мини-игра</a>
+    </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+    <div class="hero-content">
+        <div class="eyebrow">Сердце Сибири · Россия</div>
+        <h1>Мир<br>голубой <span>воды.</span></h1>
+        <p>
+            Озеро, которому миллионы лет. Горы, бескрайние просторы
+            и удивительные животные. Добро пожаловать на Байкал!
+        </p>
+        <a href="#gallery" class="btn">Смотреть фотографии ↓</a>
+    </div>
+</section>
+
+<section id="about">
+    <div class="label">01 — Знакомство</div>
+    <h2>Больше, чем озеро</h2>
+    <p class="intro">
+        Байкал расположен в южной части Восточной Сибири.
+        Это самое глубокое озеро планеты и уникальная экосистема,
+        включённая в список Всемирного наследия ЮНЕСКО в 1996 году.
+    </p>
+
+    <div class="facts">
+        <div class="fact">
+            <strong>1 642 м</strong>
+            <p>Максимальная глубина</p>
+        </div>
+        <div class="fact">
+            <strong>≈ 25 млн</strong>
+            <p>Лет — примерный возраст озера</p>
+        </div>
+        <div class="fact">
+            <strong>636 км</strong>
+            <p>Примерная длина Байкала</p>
+        </div>
+        <div class="fact">
+            <strong>20%</strong>
+            <p>Примерно столько мировых запасов незамёрзшей пресной поверхностной воды хранит Байкал</p>
+        </div>
+    </div>
+</section>
+
+<section class="dark-section" id="nature">
+    <div class="split">
+        <img
+            src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1100&q=85"
+            alt="Природный пейзаж с горами и лесами"
+            loading="lazy"
+        >
+        <div>
+            <div class="label">02 — Живая природа</div>
+            <h2>Удивительный мир жизни</h2>
+            <p>
+                В Байкале обитает множество эндемичных видов —
+                животных и растений, которые встречаются только
+                в этом регионе.
+            </p>
+            <p>
+                Самая известная обитательница озера — байкальская нерпа.
+                Это пресноводный тюлень, приспособившийся к жизни
+                в холодных водах Байкала.
+            </p>
+            <p>
+                Сохранять чистоту воды и берега важно для всей
+                уникальной экосистемы озера.
+            </p>
+            <a href="#game" class="btn">Проверить свои знания →</a>
+        </div>
+    </div>
+</section>
+
+<section id="gallery">
+    <div class="label">03 — Фотогалерея</div>
+    <h2>Красота природы</h2>
+    <p class="intro">
+        Горы, озёра, леса и прозрачный лёд. Нажми на фотографию,
+        чтобы рассмотреть её крупнее.
+    </p>
+
+    <div class="gallery-grid">
+        <div class="photo" tabindex="0">
+            <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=85"
+                 alt="Горный пейзаж у воды" loading="lazy">
+            <div class="photo-caption">Горные просторы<small>Мир сибирской природы</small></div>
+        </div>
+
+        <div class="photo" tabindex="0">
+            <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=85"
+                 alt="Озеро среди гор" loading="lazy">
+            <div class="photo-caption">Голубые горизонты<small>Вода и горы</small></div>
+        </div>
+
+        <div class="photo" tabindex="0">
+            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=85"
+                 alt="Высокие горные вершины" loading="lazy">
+            <div class="photo-caption">Величие гор<small>Природные панорамы</small></div>
+        </div>
+
+        <div class="photo" tabindex="0">
+            <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=900&q=85"
+                 alt="Заснеженные вершины гор" loading="lazy">
+            <div class="photo-caption">Зимняя сказка<small>Снег и лёд</small></div>
+        </div>
+
+        <div class="photo" tabindex="0">
+            <img src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?auto=format&fit=crop&w=900&q=85"
+                 alt="Водопад в окружении зелени" loading="lazy">
+            <div class="photo-caption">Сила воды<small>Дикая природа</small></div>
+        </div>
+
+        <div class="photo" tabindex="0">
+            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=85"
+                 alt="Солнечный свет в лесу" loading="lazy">
+            <div class="photo-caption">Сибирская тайга<small>Лесные тропы</small></div>
+        </div>
+
+        <div class="photo" tabindex="0">
+            <img src="https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=900&q=85"
+                 alt="Лесная природа" loading="lazy">
+            <div class="photo-caption">Зелёный мир<small>Дом многих животных</small></div>
+        </div>
+
+        <div class="photo" tabindex="0">
+            <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=85"
+                 alt="Широкий природный пейзаж" loading="lazy">
+            <div class="photo-caption">Дальние дали<small>Свобода и простор</small></div>
+        </div>
+
+        <div class="photo" tabindex="0">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=85"
+                 alt="Голубая вода и берег" loading="lazy">
+            <div class="photo-caption">Вода и небо<small>Оттенки синего</small></div>
+        </div>
+
+        <div class="photo" tabindex="0">
+            <img src="https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=900&q=85"
+                 alt="Дикие животные на природе" loading="lazy">
+            <div class="photo-caption">Животный мир<small>Жизнь в дикой природе</small></div>
+        </div>
+
+        <div class="photo" tabindex="0">
+            <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=85"
+                 alt="Пустынный природный ландшафт" loading="lazy">
+            <div class="photo-caption">Необычные пейзажи<small>Разнообразие Земли</small></div>
+        </div>
+
+        <div class="photo" tabindex="0">
+            <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=900&q=85"
+                 alt="Зелёные холмы и солнечный свет" loading="lazy">
+            <div class="photo-caption">Природная гармония<small>Планета, которую нужно беречь</small></div>
+        </div>
+    </div>
+    <p class="hint">
+        Примечание: фотографии иллюстрируют природные пейзажи;
+        не все снимки обязательно сделаны именно на Байкале.
+    </p>
+</section>
+
+<section class="quote">
+    <blockquote>
+        «Природа не нуждается в нас.
+        Это мы нуждаемся в природе».
+    </blockquote>
+    <p>Береги Байкал — сохраним его красоту вместе 🌍</p>
+</section>
+
+<section class="dark-section" id="game">
+    <div style="text-align:center">
+        <div class="label">04 — Интерактив</div>
+        <h2>Знаток Байкала</h2>
+        <p class="intro" style="margin:auto">
+            Проверь свои знания в небольшой викторине.
+            Ответь на 8 вопросов, набери очки и узнай,
+            насколько хорошо ты знаешь жемчужину Сибири!
+        </p>
+    </div>
+
+    <div class="quiz-wrap">
+        <div class="quiz-card" id="quiz">
+            <div id="quiz-content">
+                <div class="quiz-top">
+                    <span id="question-count">Вопрос 1 из 8</span>
+                    <span id="score">Очки: 0</span>
+                </div>
+
+                <div class="progress">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+
+                <h3 id="question">Загрузка вопроса...</h3>
+                <div class="answers" id="answers"></div>
+                <p id="feedback" aria-live="polite"></p>
+
+                <div class="quiz-actions">
+                    <span class="hint">За каждый ответ — до 10 очков</span>
+                    <button class="btn" id="next-btn" disabled>
+                        Далее →
+                    </button>
+                </div>
+            </div>
+
+            <div class="result-screen hidden" id="result-screen">
+                <div class="result-emoji" id="result-emoji">🏆</div>
+                <h2 id="result-title">Отличный результат!</h2>
+                <div class="result-score" id="final-score">80/80</div>
+                <p id="result-description"></p>
+                <button class="btn" id="restart-btn">Играть ещё раз ↻</button>
+            </div>
+        </div>
+    </div>
+</section>
+</main>
+
+<footer>
+    <p>Создано с любовью к природе · <span>БАЙКАЛ</span> © <span id="year"></span></p>
+    <p>Учись, путешествуй, открывай и береги нашу планету.</p>
+</footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-label="Увеличенная фотография">
+    <button class="close-lightbox" id="close-lightbox" aria-label="Закрыть">×</button>
+    <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* Увеличение фотографий по нажатию */
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+
+function openPhoto(photo) {
+    const img = photo.querySelector("img");
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+    lightbox.classList.add("open");
+}
+
+document.querySelectorAll(".photo").forEach(photo => {
+    photo.addEventListener("click", () => openPhoto(photo));
+    photo.addEventListener("keydown", event => {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            openPhoto(photo);
+        }
+    });
+});
+
+function closePhoto() {
+    lightbox.classList.remove("open");
+    lightboxImg.src = "";
+}
+document.getElementById("close-lightbox").addEventListener("click", closePhoto);
+lightbox.addEventListener("click", event => {
+    if (event.target === lightbox) closePhoto();
+});
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape") closePhoto();
+});
+
+/* Вопросы мини-игры */
+const questions = [
+    {
+        q: "В какой части России находится Байкал?",
+        a: ["На юге Восточной Сибири", "На Кавказе", "На Камчатке", "В Карелии"],
+        correct: 0,
+        info: "Байкал находится на юге Восточной Сибири, на территории Иркутской области и Бурятии."
+    },
+    {
+        q: "Какова максимальная глубина Байкала?",
+        a: ["642 метра", "1 642 метра", "2 500 метров", "500 метров"],
+        correct: 1,
+        info: "Максимальная измеренная глубина озера составляет около 1 642 метров."
+    },
+    {
+        q: "Какое животное является символом Байкала?",
+        a: ["Белый медведь", "Пингвин", "Байкальская нерпа", "Морская черепаха"],
+        correct: 2,
+        info: "Байкальская нерпа — пресноводный тюлень, обитающий в озере."
+    },
+    {
+        q: "Как называется самый большой остров Байкала?",
+        a: ["Сахалин", "Ольхон", "Кунашир", "Валаам"],
+        correct: 1,
+        info: "Ольхон — крупнейший остров Байкала, известный скалистыми берегами и красивыми пейзажами."
+    },
+    {
+        q: "В каком году Байкал включили в список Всемирного наследия ЮНЕСКО?",
+        a: ["1975", "2005", "1996", "2020"],
+        correct: 2,
+        info: "Байкал получил статус объекта Всемирного природного наследия ЮНЕСКО в 1996 году."
+    },
+    {
+        q: "Какая река вытекает из Байкала?",
+        a: ["Волга", "Ангара", "Обь", "Лена"],
+        correct: 1,
+        info: "Ангара — единственная река, вытекающая из Байкала."
+    },
+    {
+        q: "Что такое эндемичный вид?",
+        a: [
+            "Животное, которое живёт только в зоопарке",
+            "Растение, которое растёт только зимой",
+            "Вид, встречающийся в естественных условиях только в определённом регионе",
+            "Вид, который живёт исключительно в море"
+        ],
+        correct: 2,
+        info: "Многие обитатели Байкала эндемичны: они встречаются только в этом регионе."
+    },
+    {
+        q: "Почему важно беречь Байкал?",
+        a: [
+            "Только ради туризма",
+            "Чтобы сохранить уникальную экосистему и пресную воду",
+            "Чтобы увеличить количество дорог",
+            "Чтобы вода никогда не замерзала"
+        ],
+        correct: 1,
+        info: "Байкал хранит огромные запасы пресной воды и служит домом для уникальных видов животных и растений."
+    }
+];
+
+let order = [];
+let current = 0;
+let points = 0;
+let answered = false;
+
+const questionEl = document.getElementById("question");
+const answersEl = document.getElementById("answers");
+const feedbackEl = document.getElementById("feedback");
+const nextBtn = document.getElementById("next-btn");
+const scoreEl = document.getElementById("score");
+const countEl = document.getElementById("question-count");
+const progressBar = document.getElementById("progress-bar");
+
+function shuffle(array) {
+    const copy = [...array];
+    for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+}
+
+function startGame() {
+    order = shuffle(questions.map((_, i) => i));
+    current = 0;
+    points = 0;
+    answered = false;
+
+    document.getElementById("quiz-content").classList.remove("hidden");
+    document.getElementById("result-screen").classList.add("hidden");
+
+    renderQuestion();
+}
+
+function renderQuestion() {
+    answered = false;
+    const item = questions[order[current]];
+
+    countEl.textContent = `Вопрос ${current + 1} из ${questions.length}`;
+    scoreEl.textContent = `Очки: ${points}`;
+    progressBar.style.width = `${current / questions.length * 100}%`;
+    questionEl.textContent = item.q;
+    feedbackEl.textContent = "";
+    nextBtn.disabled = true;
+    nextBtn.textContent = current === questions.length - 1
+        ? "Результат →"
+        : "Далее →";
+
+    answersEl.replaceChildren();
+
+    item.a.forEach((answer, index) => {
+        const button = document.createElement("button");
+        button.className = "answer";
+        button.textContent = answer;
+        button.addEventListener("click", () => chooseAnswer(index));
+        answersEl.appendChild(button);
+    });
+}
+
+function chooseAnswer(index) {
+    if (answered) return;
+    answered = true;
+
+    const item = questions[order[current]];
+    const buttons = [...answersEl.querySelectorAll("button")];
+    const isCorrect = index === item.correct;
+
+    buttons.forEach((button, i) => {
+        button.disabled = true;
+        if (i === item.correct) button.classList.add("correct");
+        if (i === index && !isCorrect) button.classList.add("wrong");
+    });
+
+    if (isCorrect) {
+        points += 10;
+        feedbackEl.textContent = "✓ Правильно! " + item.info;
+        feedbackEl.style.color = "#75edb8";
+    } else {
+        feedbackEl.textContent = "Не совсем! " + item.info;
+        feedbackEl.style.color = "#ffd0a8";
+    }
+
+    scoreEl.textContent = `Очки: ${points}`;
+    progressBar.style.width = `${(current + 1) / questions.length * 100}%`;
+    nextBtn.disabled = false;
+}
+
+function showResult() {
+    document.getElementById("quiz-content").classList.add("hidden");
+    document.getElementById("result-screen").classList.remove("hidden");
+
+    document.getElementById("final-score").textContent =
+        `${points}/${questions.length * 10}`;
+
+    let emoji, title, description;
+
+    if (points === 80) {
+        emoji = "🏆";
+        title = "Настоящий знаток!";
+        description = "Идеальный результат! Ты отлично знаешь Байкал.";
+    } else if (points >= 50) {
+        emoji = "🌊";
+        title = "Исследователь Байкала!";
+        description = "Очень хороший результат! Ты многое знаешь об озере.";
+    } else if (points >= 30) {
+        emoji = "🐟";
+        title = "Юный путешественник!";
+        description = "Неплохо! Продолжай узнавать удивительные факты о Байкале.";
+    } else {
+        emoji = "🌱";
+        title = "Начало большого открытия!";
+        description = "Теперь ты узнал несколько новых фактов. Попробуй ещё раз!";
+    }
+
+    document.getElementById("result-emoji").textContent = emoji;
+    document.getElementById("result-title").textContent = title;
+    document.getElementById("result-description").textContent = description;
+}
+
+nextBtn.addEventListener("click", () => {
+    if (!answered) return;
+    current++;
+
+    if (current < questions.length) {
+        renderQuestion();
+    } else {
+        progressBar.style.width = "100%";
+        showResult();
+    }
+});
+
+document.getElementById("restart-btn").addEventListener("click", startGame);
+
+startGame();
+</script>
+</body>
+</html>
